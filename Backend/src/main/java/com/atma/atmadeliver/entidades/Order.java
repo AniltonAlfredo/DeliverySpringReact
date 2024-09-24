@@ -5,6 +5,7 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -96,6 +97,10 @@ public class Order implements Serializable{
         this.status = status;
     }
 
+    public Set<Product> getProducts() {
+        return products;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -120,7 +125,6 @@ public class Order implements Serializable{
             return false;
         return true;
     }
-
     
 
 }
