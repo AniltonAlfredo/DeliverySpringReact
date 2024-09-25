@@ -25,11 +25,11 @@ public class OrderController {
 @Autowired
     private OrderService service;
 
-    @GetMapping
-    public ResponseEntity<List<OrderDTO>> findAll(){
-        List<OrderDTO> list = service.findAll();
-        return ResponseEntity.ok().body(list);
-    }
+    // @GetMapping
+    // public ResponseEntity<List<OrderDTO>> findAll(){
+    //     List<OrderDTO> list = service.findAll();
+    //     return ResponseEntity.ok().body(list);
+    // }
 
     @PostMapping
     public ResponseEntity<OrderDTO> insert(@RequestBody OrderDTO dto) {
