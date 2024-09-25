@@ -22,14 +22,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
-@Autowired
+    @Autowired
     private OrderService service;
 
-    // @GetMapping
-    // public ResponseEntity<List<OrderDTO>> findAll(){
-    //     List<OrderDTO> list = service.findAll();
-    //     return ResponseEntity.ok().body(list);
-    // }
+    @GetMapping
+    public ResponseEntity<List<OrderDTO>> findAll(){
+        List<OrderDTO> list = service.findAll();
+        return ResponseEntity.ok().body(list);
+    }
 
     @PostMapping
     public ResponseEntity<OrderDTO> insert(@RequestBody OrderDTO dto) {
