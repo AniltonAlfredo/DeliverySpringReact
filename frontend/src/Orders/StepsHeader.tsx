@@ -6,18 +6,18 @@ function StepsHeader() {
                 <h1 className="steps-title">
                     SIGA AS <br/> ETAPAS
                 </h1>
-                <ul className="steps-items">
+                <ol className="steps-items">
                     <li>
                         <span className="steps-number">
-                            Selecione os produtos e localização
+                           1 - Selecione os produtos e localização
                         </span>
                     </li>
                     <li>
                         <span className="steps-number">
-                            Depois clique em <strong>"ENVIAR"</strong>
+                           2 - Depois clique em <strong>"ENVIAR"</strong>
                         </span>
                     </li>
-                </ul>
+                </ol>
             </div>
         </header>
         

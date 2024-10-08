@@ -1,11 +1,13 @@
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import './App.css';
-import Navbar from './Navbar';
 import Rotas from './Rotas';
 
 function App() {
   return (
     <>
       <Rotas/>
+      <ToastContainer/>
     </>
   );
 }
