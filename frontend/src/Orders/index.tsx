@@ -38,7 +38,7 @@ function Orders() {
         } else {
           setSelectedProducts(previous => [...previous, product]);
         }
-      }
+      } 
 
       const handleSubmit = () => {
         const productsIds = selectedProducts.map(({ id }) => ({ id }));
@@ -65,7 +65,7 @@ function Orders() {
                     onSelectProduct={handleSelectProduct}
                     selectedProducts={selectedProducts}
                 />
-                <OrderLocation/><br/>
+                <OrderLocation onChangeLocation={location=> setOrderLocation(location)}/><br/>
                 <OrderSummary 
                     amount={selectedProducts.length} 
                     totalPrice={totalPrice}

@@ -27,7 +27,7 @@ type Props = {
     onChangeLocation: (location: OrderLocationData)=> void;
 }
 
-function OrderLocation() {
+function OrderLocation({onChangeLocation}:Props) {
 
     const [address, setAddress] = useState<Place>({
         position: initialPosition
@@ -51,38 +51,14 @@ function OrderLocation() {
         return places;
     };
 
-    // const loadOptions = async (inputValue: string): Promise<OptionsOrGroups<Place, GroupBase<Place>>> => {
-    //     try {
-    //         const response = await fetchLocalMapBox(inputValue);
-    
-    //         if (!response || !response.data || !response.data.features) {
-    //             throw new Error("Resposta inválida da API");
-    //         }
-    
-    //         const places = response.data.features.map((item: any) => ({
-    //             label: item.place_name,
-    //             value: item.place_name,
-    //             position: {
-    //                 lat: item.center[1],
-    //                 lng: item.center[0]
-    //             },
-    //             place: item.place_name,
-    //         }));
-    
-    //         return places;
-    //     } catch (error) {
-    //         console.error("Erro ao carregar opções:", error);
-    //         return []; // Retorna uma lista vazia em caso de erro
-    //     }
-    // };
 
     const handleChangeSelect = (place: Place) => {
         setAddress(place);
-        // onChangeLocation({
-        //     latitude: place.position.lat,
-        //     longitude: place.position.lng,
-        //     address: place.label!
-        // });
+        onChangeLocation({
+            latitude: place.position.lat,
+            longitude: place.position.lng,
+            address: place.label!
+        });
     };
 
     return (
@@ -100,14 +76,18 @@ function OrderLocation() {
                     />
                 </div>
 
-                <MapContainer center={address.position} zoom={15} scrollWheelZoom>
+                <MapContainer 
+                center={address.position} 
+                zoom={15} 
+                key={address.position.lat}
+                scrollWheelZoom>
                     <TileLayer
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
                     <Marker position={address.position}>
                         <Popup>
-                            Minha Localização
+                            {address.label}
                         </Popup>
                     </Marker>
                 </MapContainer>

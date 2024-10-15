@@ -91,7 +91,10 @@
     text-align: center;
   }
   
-  .order-card-container.selected .order-card-title {
+  .order-card-container.selected{
+    color: #008E5B;
+  }
+  .order-card-title{
     color: #008E5B;
   }
   
@@ -112,6 +115,9 @@
   }
   
   .order-card-container.selected .order-card-price {
+    color: #008E5B;
+  }
+  .order-card-price.description{
     color: #008E5B;
   }
   
@@ -138,6 +144,10 @@
   }
   
   .order-location-container {
+    display: flex;
+    justify-content: center;
+  }
+  .order-location-container h3 {
     display: flex;
     justify-content: center;
   }
