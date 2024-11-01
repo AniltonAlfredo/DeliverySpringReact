@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import Header from './src/Header';
 import Home from './src/Home';
+import Routes from './src/Routes';
 // import { useFonts, OpenSans_400Regular,OpenSans_700Regular } from '@expo-google-fonts/open-sans';
 
 
@@ -16,9 +17,8 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Header/>
       <StatusBar style="auto" />
-      <Home/>
+      <Routes />
     </View>
   );
 }
