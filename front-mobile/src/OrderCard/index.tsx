@@ -1,19 +1,44 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { Order } from '../type';
+
+import dayjs from 'dayjs';
+import 'dayjs/locale/pt'
+import relativeTime from 'dayjs/plugin/relativeTime'
 
 
-export default function OrderCard() {
+dayjs.locale('pt');
+dayjs.extend(relativeTime);
+
+type Props = {
+    order: Order;
+}
+
+function dateFromNow(date: string){
+    return dayjs(date).fromNow();
+}
+
+export function formatPrice(price: number): string{
+    const formatter = new Intl.NumberFormat('pt-AO',{
+        style: 'currency',
+        currency: 'AOA',
+        minimumFractionDigits: 2
+    });
+    return formatter.format(price);
+}
+
+export default function OrderCard({ order }: Props) {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.orderName}> Pedido 1 </Text>
-                <Text style={styles.orderPrice}> 1000kz </Text>
+                <Text style={styles.orderName}> Pedido {order.id} </Text>
+                <Text style={styles.orderPrice}>{formatPrice(order.total)} </Text>
             </View>
-            <Text style={styles.text}> Há 30min </Text>
+            <Text style={styles.text}> {dateFromNow(order.moment)} </Text>
             <View style={styles.productsList}>
-                <Text style={styles.text}> Pizza calabresa</Text>
-                <Text style={styles.text}> Pizza calabresa</Text>
-                <Text style={styles.text}> Pizza calabresa</Text>
+                {order.products.map(product => (
+                    <Text key={product.id} style={styles.text}>{product.name}</Text>
+                ))}
             </View>
         </View>
     );
@@ -45,7 +70,7 @@ const styles = StyleSheet.create({
         lineHeight: 19,
         letterSpacing: -0.24,
         color: '#9E9E9E',
-        fontFamily: 'OpenSans_400Regular'
+        // fontFamily: 'OpenSans_400Regular'
     },
     orderName: {
         fontWeight: 'bold',
@@ -53,7 +78,7 @@ const styles = StyleSheet.create({
         lineHeight: 25,
         letterSpacing: -0.24,
         color: '#263238',
-        fontFamily: 'OpenSans_700Bold'
+        // fontFamily: 'OpenSans_700Bold'
     },
     orderPrice: {
         fontWeight: 'bold',
@@ -62,7 +87,7 @@ const styles = StyleSheet.create({
         textAlign: 'right',
         letterSpacing: -0.24,
         color: '#DA5C5C',
-        fontFamily: 'OpenSans_700Bold'
+        // fontFamily: 'OpenSans_700Bold'
     },
     productsList: {
         borderTopColor: '#E6E6E6',
